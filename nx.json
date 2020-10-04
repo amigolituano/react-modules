@@ -28,6 +28,9 @@
     "nx-test-e2e": {
       "tags": [],
       "implicitDependencies": ["nx-test"]
+    },
+    "list": {
+      "tags": ["list"]
     }
   }
 }
