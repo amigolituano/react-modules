@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
-import { Action, ReducersMapObject } from 'redux';
+import { Action, Reducer, ReducersMapObject } from 'redux';
 
 export interface ReactModule {
   storeProps?: {
@@ -55,6 +55,29 @@ export const getFeaturesStoreData = (
   }
 
   return { reducersMap, initialFeaturesState };
+};
+
+export const storeForFeature = (feature: string, reducer: Reducer) => {
+  return {
+    feature,
+    reducer,
+  };
+};
+
+export const createReactModule = (
+  feature: string,
+  routeProps: Omit<RouteData, 'path'>,
+  childrenModules: ReactModule[],
+  reducer: Reducer
+): ReactModule => {
+  return {
+    storeProps: storeForFeature(feature, reducer),
+    routeProps: {
+      path: `/${feature}`,
+      ...routeProps,
+    },
+    childrenModules,
+  };
 };
 
 export const Routes = ({ routes }: { routes: any[] }) => {
