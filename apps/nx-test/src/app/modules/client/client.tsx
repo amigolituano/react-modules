@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
-import { Routes } from '../../shared/routes/routes';
+import { ModuleRoutes } from '../../shared/routes/routes';
 
 import './client.scss';
 import routes from './client.routes';
@@ -13,14 +13,18 @@ export const Client = () => {
       <div>
         <h1>Client</h1>
 
-        {routes.map((route) => (
-          <Link key={route.path} to={`${match.path}${route.path}`}>
-            {route.name}
-          </Link>
-        ))}
+        <ul>
+          {routes.map((route) => (
+            <li>
+              <Link key={route.path} to={`${match.path}${route.path}`}>
+                {route.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
 
-      <Routes routes={routes}></Routes>
+      <ModuleRoutes routes={routes}></ModuleRoutes>
     </div>
   );
 };

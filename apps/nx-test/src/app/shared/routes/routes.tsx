@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ComponentClass, FunctionComponent } from 'react';
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
 import { Action, Reducer, ReducersMapObject } from 'redux';
 
@@ -14,7 +14,7 @@ export interface ReactModule {
 
 export interface RouteData {
   path: string;
-  component?: React.FC | React.Component | JSX.Element;
+  component?: ComponentClass | FunctionComponent;
   render?: () => React.Component;
   childrenRoutes?: RouteData[];
   name: string;
@@ -80,7 +80,7 @@ export const createReactModule = (
   };
 };
 
-export const Routes = ({ routes }: { routes: any[] }) => {
+export const ModuleRoutes = ({ routes }: { routes: RouteData[] }) => {
   const match = useRouteMatch();
 
   const pathRoot = match.path === '/' ? '' : match.path;

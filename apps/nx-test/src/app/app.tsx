@@ -1,12 +1,12 @@
 import React from 'react';
-import { BrowserRouter, Link, Switch } from 'react-router-dom';
+import { BrowserRouter, Link } from 'react-router-dom';
 
 import './app.scss';
 
 import { ReactComponent as Logo } from './logo.svg';
 import { Provider } from 'react-redux';
 import configureStore from './store/store';
-import { Routes } from './shared/routes/routes';
+import { ModuleRoutes } from './shared/routes/routes';
 
 import routes from './app.routes';
 import modules from './modules';
@@ -28,14 +28,18 @@ export const App = () => {
             <Logo width="75" height="75" />
             <h1>Welcome to nx-test!</h1>
 
-            {routes.map((route) => (
-              <Link key={route.path} to={`${route.path}`}>
-                {route.name}
-              </Link>
-            ))}
+            <ul>
+              {routes.map((route) => (
+                <li>
+                  <Link key={route.path} to={`${route.path}`}>
+                    {route.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </header>
           <main>
-            <Routes routes={routes}></Routes>
+            <ModuleRoutes routes={routes}></ModuleRoutes>
           </main>
         </div>
       </Provider>
