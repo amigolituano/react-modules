@@ -30,10 +30,8 @@ export const App = () => {
 
             <ul>
               {routes.map((route) => (
-                <li>
-                  <Link key={route.path} to={`${route.path}`}>
-                    {route.name}
-                  </Link>
+                <li key={route.path}>
+                  <Link to={`${route.path}`}>{route.name}</Link>
                 </li>
               ))}
             </ul>
